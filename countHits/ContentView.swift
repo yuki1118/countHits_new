@@ -8,16 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+    @State private var tapCount = 0
+        var body: some View {
+            NavigationStack{
+                VStack(alignment: .center) {
+                    Text("ボタンが\(tapCount)回押されたよ")
+                    Button(action: {
+                        tapCount += 1
+                    }, label: {
+                        Image(systemName: "button.programmable")
+                            .colorInvert()
+                            .frame(width: 50, height: 50)
+                    })
+                    NavigationLink {
+                        settingView()
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.headline)
+                            .cornerRadius(10)
+                            .padding()
+                    }
+                    .navigationTitle("メイン画面")
+                }
+            }
         }
-        .padding()
+    }
+
+struct settingView: View {
+    var body: some View {
+        Text("SecondView").font(.title)
+        
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
